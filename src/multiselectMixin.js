@@ -9,12 +9,11 @@ function not (fun) {
 }
 
 function includes (str, query) {
-  /* istanbul ignore else */
   if (str === undefined) str = 'undefined'
   if (str === null) str = 'null'
   if (str === false) str = 'false'
-  const text = str.toString().toLowerCase()
-  return text.indexOf(query.trim()) !== -1
+  const text = str.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  return text.indexOf(query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '')) !== -1
 }
 
 function filterOptions (options, search, label, customLabel) {
@@ -571,7 +570,7 @@ export default {
           this.id
         )
       }
-      
+
       if (this.closeOnSelect) this.deactivate()
     },
     /**

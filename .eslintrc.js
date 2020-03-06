@@ -6,7 +6,7 @@ module.exports = {
   ],
   parser: 'babel-eslint',
   parserOptions: {
-    sourceType: 'module'
+    sourceType: 'module',
   },
   // required to lint *.vue files
   plugins: ['html'],
